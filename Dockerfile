@@ -1,20 +1,16 @@
 # Copyright (c) 2017, Cassiny.io OÜ
 # Distributed under the terms of the Modified BSD License.
 
-# https://hub.docker.com/r/cassinyio/notebook-gpu/
-FROM cassinyio/notebook-gpu:9eed8657
+# https://hub.docker.com/r/cassinyio/notebook/
+FROM cassinyio/notebook:02946e48
 
 LABEL maintainer "wow@cassiny.io"
 
 # Install PyTorch, TensorFlow and Keras
-RUN conda install --quiet --yes \
-    'pytorch' \
-    'torchvision' \
-    'cuda80' \
-    -c soumith \
-    && \
-    pip install tensorflow-gpu \
-    && \
-    pip install keras \
-    && \
-    conda clean -tipsy
+COPY environment.yml $HOME/environment.yml
+COPY requirements.txt $HOME/requirements.txt
+RUN conda install -c pytorch --quiet --yes --file $HOME/environment.yml && conda clean -tipsy
+RUN pip install --no-cache-dir -r $HOME/requirements.txt
+RUN rm $HOME/environment.yml
+RUN rm $HOME/requirements.txt
+
