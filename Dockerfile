@@ -6,7 +6,6 @@ FROM cassinyio/notebook-gpu:ceeb3806
 
 LABEL maintainer "wow@cassiny.io"
 
-# Install PyTorch, TensorFlow and Keras
 # installing libraries
 COPY environment.yml $HOME/environment.yml
 COPY requirements.txt $HOME/requirements.txt
