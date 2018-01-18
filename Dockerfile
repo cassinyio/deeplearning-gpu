@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 
 # https://hub.docker.com/r/cassinyio/notebook-gpu/
-FROM cassinyio/notebook-gpu:ceeb3806
+FROM cassinyio/notebook-gpu:0d2ab35b
 
 LABEL maintainer "wow@cassiny.io"
 
